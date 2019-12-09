@@ -16,4 +16,4 @@
 
 ## Architecture de l'application
 
-![Image of architecture](https://github.com/WalidNazih/Node-Microservice-Architecture/diagram.png)
+![Image of architecture](https://github.com/WalidNazih/Node-Microservice-Architecture/blob/master/diagram.png)
