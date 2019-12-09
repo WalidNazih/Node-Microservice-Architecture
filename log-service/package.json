@@ -1,0 +1,26 @@
+{
+  "name": "log-service",
+  "version": "1.0.0",
+  "description": "Service de log",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "consul": "^0.36.0",
+    "dotenv": "^8.2.0",
+    "js-yaml": "^3.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "kafka-node": "^5.0.0",
+    "oas3-tools": "^1.0.1",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.3"
+  }
+}

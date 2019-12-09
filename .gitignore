@@ -1,0 +1,4 @@
+log-service/node_modules
+spacy-service/node_modules
+user-service/node_modules
+angular-client/ChatbotClient/node_modules

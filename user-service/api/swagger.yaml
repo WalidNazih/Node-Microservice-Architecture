@@ -1,0 +1,172 @@
+openapi: 3.0.1
+info:
+  title: user-service
+  description: Service de gestion des utilisateurs
+  version: 1.0.0
+servers:
+- url: localhost:1000
+tags:
+- name: user
+  description: Controlleur pour les operations CRUD de l'utilisateur
+- name: authentication
+  description: Controlleur de l'authentification des utilisateurs
+paths:
+  /user:
+    get:
+      tags:
+      - user
+      summary: Renvoie tous les utilisateurs
+      operationId: getAllUsers
+      responses:
+        "200":
+          $ref: '#/components/schemas/User'
+        "403":
+          description: Vous n'avez pas la permission pour executer cette operation
+          content: {}
+        "404":
+          description: Cette route n'existe pas
+          content: {}
+      x-swagger-router-controller: User
+    put:
+      tags:
+      - user
+      summary: Modifier un utilisateur
+      operationId: updateUser
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          $ref: '#/components/schemas/User'
+        "403":
+          description: Vous n'avez pas la permission pour executer cette operation
+          content: {}
+        "404":
+          description: Cette route n'existe pas
+          content: {}
+      x-swagger-router-controller: User
+    post:
+      tags:
+      - user
+      summary: Ajouter un utilisateur
+      operationId: addUser
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          $ref: '#/components/schemas/User'
+        "403":
+          description: Vous n'avez pas la permission pour executer cette operation
+          content: {}
+        "404":
+          description: Cette route n'existe pas
+          content: {}
+      x-swagger-router-controller: User
+  /user/{id}:
+    get:
+      tags:
+      - user
+      summary: Recuperation d'un utilisateur
+      operationId: getOneUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          $ref: '#/components/schemas/User'
+        "403":
+          description: Vous n'avez pas la permission pour executer cette operation
+          content: {}
+        "404":
+          description: Cette route n'existe pas
+          content: {}
+      x-swagger-router-controller: User
+    delete:
+      tags:
+      - user
+      summary: Supprimer un utilisateur
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Supprime avec succes
+          content: {}
+        "403":
+          description: Vous n'avez pas la permission pour executer cette operation
+          content: {}
+        "404":
+          description: Cette route n'existe pas
+          content: {}
+      x-swagger-router-controller: User
+  /login:
+    post:
+      tags:
+      - authentication
+      summary: Route d'authentification
+      operationId: loginPOST
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Authentification reussi
+          content: {}
+      x-swagger-router-controller: Authentication
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: bed1454-1615656515-516565615-15513258878
+        username:
+          type: string
+          example: walid
+        password:
+          type: string
+          description: Chaine de caractere encode par BCrypt
+          example: $2b$10$//DXiVVE59p7G5k/4Klx/ezF7BI42QZKmoOD0NDvUuqxRE5bFFBLy
+        roles:
+          type: array
+          example:
+          - admin - user
+          items:
+            $ref: '#/components/schemas/Role'
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          example: bed1454-1615656515-516565615-15513258878
+        name:
+          type: string
+          example: admin
+  responses:
+    "403":
+      description: Vous n'avez pas la permission pour executer cette operation
+      content: {}
+    "404":
+      description: Cette route n'existe pas
+      content: {}

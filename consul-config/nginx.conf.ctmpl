@@ -1,0 +1,24 @@
+worker_processes 1;
+
+events {
+    worker_connections  1024;
+}
+
+http{
+
+    #upstream pour recuperer toutes les instances du service user
+    upstream user-service{
+        {{ range service "user-service"}}
+            server {{ .Address }}:{{ .Port }}
+    }
+
+    server{
+        #port du serveur proxy
+        listen 80;
+        
+        #redirection de la route localhost:80/user a la user-service
+        location /user{
+            proxy_pass http://user-service;
+        }
+    }
+}

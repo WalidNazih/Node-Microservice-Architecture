@@ -1,0 +1,35 @@
+openapi: 3.0.1
+info:
+  title: log-service
+  description: Service de log
+  version: 1.0.0
+servers:
+- url: localhost
+tags:
+- name: logs
+paths:
+  /log:
+    get:
+      tags:
+      - logs
+      operationId: getLogs
+      responses:
+        "200":
+          $ref: '#/components/schemas/Log'
+        "403":
+          description: Vous n'avez pas permission pour acceder a cette route
+          content: {}
+        "404":
+          description: Route n'existe pas
+          content: {}
+      x-swagger-router-controller: Logs
+components:
+  schemas:
+    Log:
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+          example: Utilisateur (id) s'est authentifie
