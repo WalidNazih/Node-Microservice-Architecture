@@ -13,7 +13,7 @@
   "license": "Unlicense",
   "private": true,
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "connect": "^3.2.0",
     "consul": "^0.36.0",
     "dotenv": "^8.2.0",
